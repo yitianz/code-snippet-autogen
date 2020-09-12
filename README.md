@@ -32,6 +32,7 @@ TECH
 
 TODO
 1. Do research on code generation -- find papers, code repos, etc.
+1.5. Come up with system design / workflow
 2. Build a small library of {word => code snippets} for testing purposes
 3. Integrate with VSCode as IDE extension 
 4. Possibly have NLP
