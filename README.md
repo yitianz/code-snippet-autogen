@@ -21,3 +21,21 @@ For example, a developer who wants to use binary search as a subroutine for her 
 * Heroku / AWS / GCP / Azure <-- which hosting?
 * Javascript for browser version that works for Leetcode and other browser dev environments
 
+## MEETING 9/11
+MEMBERS
+* Yitian
+* Kripa
+
+TECH
+* Java, Spring Boot
+* Postgres, NoSQL DB
+
+TODO
+1. Do research on code generation -- find papers, code repos, etc.
+2. Build a small library of {word => code snippets} for testing purposes
+3. Integrate with VSCode as IDE extension 
+4. Possibly have NLP
+
+MEETING TIME
+Tuesday 7pm (Pacific)
+
