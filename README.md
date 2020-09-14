@@ -11,6 +11,7 @@ For example, a developer who wants to use binary search as a subroutine for her 
 ## Members
 * Yitian
 * Kripa
+* Vinny
 
 ## Programming Languages Supported
 * Python
@@ -33,7 +34,7 @@ TECH
 * Heroku -> GCP / AWS
 
 TODO
-1. Do research on code generation -- find papers, code repos, etc.
+* 1. Do research on code generation -- find papers, code repos, etc.*
 2. User workflow diagram
 3. Design system architecture
 4. Build a small library of {word => code snippets} for testing purposes
