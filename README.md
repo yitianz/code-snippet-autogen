@@ -43,5 +43,5 @@ TODO
 7. Possibly have NLP to parse the input words
 
 MEETING TIME
-Tuesday 7pm (Pacific)
+Tuesday 7:30pm (Pacific)
 
