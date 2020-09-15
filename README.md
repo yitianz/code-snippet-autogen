@@ -26,6 +26,9 @@ For example, a developer who wants to use binary search as a subroutine for her 
 * Heroku / AWS / GCP / Azure <-- which hosting?
 * Javascript for browser version that works for Leetcode / Hackerrank and other browser dev environments
 
+## Important Resources
+https://github.com/deepklarity/jupyter-text2code
+
 ## MEETING 9/11
 
 TECH
