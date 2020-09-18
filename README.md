@@ -12,7 +12,8 @@ https://github.com/deepklarity/jupyter-text2code
 ## Members
 * Yitian
 * Kripa
-* Vinny
+* Vinay
+* Raju
 
 ## Programming Languages Supported
 * Python
@@ -48,5 +49,27 @@ TODO
 7. Possibly have NLP to parse the input words
 
 MEETING TIME
-Tuesday 7:30pm (Pacific)
+Thursday 7:30pm (Pacific)
+
+## MEETING 9/17
+TODOS
+* Look into IntelliJ extensions -- Vinay + Kripa
+* Generate 1 code snippet each
+  * Pick language
+  * Pick data structure
+  * Pick code snippet
+  * Fill in variable names
+  
+CODE SNIPPETS
+* Binary Search -- Kripa
+* DFS (tree / graph)
+* BFS (tree / graph)
+* Dijkstra's 
+* Sorting algorithms (quick, merge, heap) -- Yitian + Vadhi
+* MST alg (Prim's?)
+* Union find
+* Heap
+* Trie -- Vinay
+  
+ 
 
