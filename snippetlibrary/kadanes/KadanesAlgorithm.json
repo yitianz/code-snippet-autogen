@@ -1,0 +1,21 @@
+{
+  "KadanesAlgorithm": {
+    "filename": "KadanesAlgorithm.java",
+    "variables": {
+      "localMax": "loc",
+      "globalMax": "glob"
+    },
+    "iterableType": {
+      "List<Integer>": {
+        "method": {
+          "startLine": 7,
+          "length": 8
+        },
+        "body": {
+          "startLine": 8,
+          "length": 6
+        }
+      }
+    }
+  }
+}
