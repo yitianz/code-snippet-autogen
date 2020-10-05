@@ -13,6 +13,15 @@ public final class KadanesAlgorithm {
         return glob;
     }
 
+    public static long kadanes(int[] nums){
+        long loc = 0, glob = Long.MIN_VALUE;
+        for (Integer n : nums) {
+            loc = Math.max(n, loc+n);
+            glob = Math.max(loc, glob);
+        }
+        return glob;
+    }
+
     public static void main(String[] args) {
         long maxSubarraySum = kadanes(new ArrayList<>());
     }
