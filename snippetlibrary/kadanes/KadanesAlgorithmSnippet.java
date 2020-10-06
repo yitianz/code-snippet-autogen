@@ -23,8 +23,8 @@ public class KadanesAlgorithmSnippet {
 
     static final String kadanesInfoFilePath = "snippetlibrary/kadanes/KadanesAlgorithm.json";
 
-    public static String kadanesSnippet(String[] vars, boolean inlineSnippet) throws IOException {
-        // vars should contain the variable names for `localMax` and `globalMax`, in that order
+    public static String kadanesSnippet(boolean inlineSnippet, Map<String, String> vars) throws IOException {
+        // vars should contain the variable names for `localMax` and `globalMax` with those as keys
         // null or empty string for default variable names
         String returnType = inlineSnippet ? "body" : "method";
 
