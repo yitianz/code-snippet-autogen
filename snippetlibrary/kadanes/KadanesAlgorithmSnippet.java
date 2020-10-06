@@ -22,7 +22,8 @@ public class KadanesAlgorithmSnippet {
 //        BufferedReader jsonFile = new BufferedReader(new FileReader(kadanesInfoFilePath));
 //        jsonFile.lines().forEach(System.out::println);
 
-        String jsonFile = Files.readString(Path.of(kadanesInfoFilePath));
+//        String jsonFile = Files.readString(Path.of(kadanesInfoFilePath));
+        String jsonFile = new String(Files.readAllBytes(Paths.get(kadanesInfoFilePath)));
 
         JSONObject kadanesInfo = new JSONObject(jsonFile).getJSONObject("KadanesAlgorithm");
 //        System.out.println(kadanesInfo.toString(4));
