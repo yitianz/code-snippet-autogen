@@ -71,7 +71,7 @@ public class KadanesAlgorithmSnippet {
 
         StringBuilder sb = new StringBuilder();
         int[] tabCount = new int[]{-1};
-        Map<String, String> finalReplaceVars = replaceVars;
+//        Map<String, String> finalReplaceVars = replaceVars;
 //        Files.lines(Path.of(kadanesInfoFilePath.substring(0, kadanesInfoFilePath.lastIndexOf('/') + 1) + kadanesInfo.getString("filename"))).skip(startLine).limit(length).forEach(s -> sb.append(replaceVariables(s.substring(tabCount[0] != -1 ? tabCount[0] : (tabCount[0] = s.length() - s.stripLeading().length())), finalReplaceVars)).append('\n'));
 
         Files.lines(Path.of(kadanesInfoFilePath.substring(0, kadanesInfoFilePath.lastIndexOf('/') + 1) + kadanesInfo.getString("filename"))).skip(startLine).limit(length).forEach(s -> sb.append(s.substring(tabCount[0] != -1 ? tabCount[0] : (tabCount[0] = s.length() - s.stripLeading().length()))).append('\n'));
@@ -158,9 +158,8 @@ public class KadanesAlgorithmSnippet {
         return replaceVariables(codeLine, null);
     }
 
-    private static String replaceVariables_ahocorasick(String codeBlock, Map<String, String> vars) {
+    private static String replaceVariables_ahocorasick(final String codeBlock, final Map<String, String> vars) {
         if (vars == null || vars.isEmpty()) return codeBlock;
-//        final String text, final Map<String, String> definitions
         // Create a buffer sufficiently large that re-allocations are minimized.
         final StringBuilder sb = new StringBuilder(codeBlock.length() << 1);
 
@@ -170,13 +169,7 @@ public class KadanesAlgorithmSnippet {
         builder.ignoreOverlaps();
 //        builder.removeOverlaps();  // deprecated, use ignoreOverlaps instead
 
-//        final String[] keys = keys(definitions);
-//
-//        for (final String key : keys) {
-//            builder.addKeyword(key);
-//        }
         vars.keySet().forEach(builder::addKeyword);
-
 
         final Trie trie = builder.build();
         final Collection<Emit> emits = trie.parseText(codeBlock);
@@ -211,7 +204,7 @@ public class KadanesAlgorithmSnippet {
 
     public static void main(String[] args) {
         try {
-            Map<String, String> replaceVars = Arrays.stream(new String[][]{{"localMax", "localMax"}, {"globalMax", "globalMax"}}).collect(Collectors.toMap(k -> k[0], v -> v[1]));
+            Map<String, String> replaceVars = Arrays.stream(new String[][]{{"localMax", "loki"}, {"globalMax", "thor"}}).collect(Collectors.toMap(k -> k[0], v -> v[1]));
             System.out.println(kadanesSnippet(false));
             System.out.println(kadanesSnippet(false, replaceVars));
             System.out.println(kadanesSnippet(false, new String[]{"thor", "loki"}));
