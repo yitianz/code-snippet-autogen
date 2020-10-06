@@ -55,19 +55,18 @@ public class KadanesAlgorithmSnippet {
 
         JSONObject replaceParams = kadanesInfo.getJSONObject("variables");
 
-        Map<String, String> replaceVars = null;
+        Map<String, String> replaceVars = new HashMap<>();
         if (vars != null && !vars.isEmpty()) {
-            replaceVars = new HashMap<>();
-            Map<String, String> finalReplaceVars = replaceVars;
             vars.forEach((varName, repl) -> {
                 try {
-                    finalReplaceVars.put(replaceParams.getString(varName), repl);
+                    replaceVars.put(replaceParams.getString(varName), repl);
                 } catch (JSONException e) {
                     System.err.printf("Default variable name \"%s\" not found for this snippet; ignoring exception:%n", varName);
                     e.printStackTrace();
                 }
             });
-        }
+        } else replaceParams.keySet().forEach(d -> replaceVars.put(replaceParams.getString(d), d));
+
 
         StringBuilder sb = new StringBuilder();
         int[] tabCount = new int[]{-1};
@@ -75,6 +74,8 @@ public class KadanesAlgorithmSnippet {
 //        Files.lines(Path.of(kadanesInfoFilePath.substring(0, kadanesInfoFilePath.lastIndexOf('/') + 1) + kadanesInfo.getString("filename"))).skip(startLine).limit(length).forEach(s -> sb.append(replaceVariables(s.substring(tabCount[0] != -1 ? tabCount[0] : (tabCount[0] = s.length() - s.stripLeading().length())), finalReplaceVars)).append('\n'));
 
         Files.lines(Path.of(kadanesInfoFilePath.substring(0, kadanesInfoFilePath.lastIndexOf('/') + 1) + kadanesInfo.getString("filename"))).skip(startLine).limit(length).forEach(s -> sb.append(s.substring(tabCount[0] != -1 ? tabCount[0] : (tabCount[0] = s.length() - s.stripLeading().length()))).append('\n'));
+
+        sb.deleteCharAt(sb.length() - 1);
 
 
         return replaceVariables_ahocorasick(sb, replaceVars);
