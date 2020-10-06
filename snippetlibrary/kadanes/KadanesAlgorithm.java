@@ -5,24 +5,25 @@ import java.util.List;
 
 public final class KadanesAlgorithm {
     public static long kadanes(List<Integer> nums){
-        long loc = 0, glob = Long.MIN_VALUE;
+        long _$loc_ = 0, _$glob_ = Long.MIN_VALUE;
         for (Integer n : nums) {
-            loc = Math.max(n, loc+n);
-            glob = Math.max(loc, glob);
+            _$loc_ = Math.max(n, _$loc_ +n);
+            _$glob_ = Math.max(_$loc_, _$glob_);
         }
-        return glob;
+        return _$glob_;
     }
 
     public static long kadanes(int[] nums){
-        long loc = 0, glob = Long.MIN_VALUE;
+        long _$loc_ = 0, _$glob_ = Long.MIN_VALUE;
         for (Integer n : nums) {
-            loc = Math.max(n, loc+n);
-            glob = Math.max(loc, glob);
+            _$loc_ = Math.max(n, _$loc_ + n);
+            _$glob_ = Math.max(_$loc_, _$glob_);
         }
-        return glob;
+        return _$glob_;
     }
 
     public static void main(String[] args) {
         long maxSubarraySum = kadanes(new ArrayList<>());
+        maxSubarraySum = kadanes(new int[]{});
     }
 }
