@@ -2,7 +2,6 @@ package kadanes;
 
 import org.ahocorasick.trie.Emit;
 import org.ahocorasick.trie.Trie;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,15 +14,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class KadanesAlgorithmSnippet {
 
 //    static final String[] defaultVariableNames = {"localMax", "globalMax"};
 
+    static final Map<String, String> defaultParams = Arrays.stream(new String[][]{{"iterableType", "List<Integer>"}}).collect(Collectors.toMap(p -> p[0], p -> p[1]));
+
     static final String kadanesInfoFilePath = "snippetlibrary/kadanes/KadanesAlgorithm.json";
 
-    public static String kadanesSnippet(boolean inlineSnippet, Map<String, String> vars) throws IOException {
+    public static String kadanesSnippet(boolean inlineSnippet, String iterableType, Map<String, String> vars) throws IOException {
         // vars should contain the variable names for `localMax` and `globalMax` with those as keys
         // null or empty string for default variable names
         String returnType = inlineSnippet ? "body" : "method";
@@ -39,7 +39,17 @@ public class KadanesAlgorithmSnippet {
         JSONObject kadanesInfo = new JSONObject(jsonFile).getJSONObject("KadanesAlgorithm");
 //        System.out.println(kadanesInfo.toString(4));
 
-        JSONObject extractParams = kadanesInfo.getJSONObject("iterableType").getJSONObject("int[]").getJSONObject(returnType);
+        JSONObject extractParams = null;
+        try {
+            if (iterableType == null) throw new NullPointerException();
+            extractParams = kadanesInfo.getJSONObject("iterableType").getJSONObject("List<Integer>").getJSONObject(returnType);
+        } catch (JSONException e) {
+            extractParams = kadanesInfo.getJSONObject("iterableType").getJSONObject(defaultParams.get("iterableType")).getJSONObject(returnType);
+            System.err.printf("iterableType \"%s\" not found for this snippet; ignoring exception and using default iterableType of \"%s\":%n", iterableType, defaultParams.get("iterableType"));
+            e.printStackTrace();
+        } catch (NullPointerException n) {
+            extractParams = kadanesInfo.getJSONObject("iterableType").getJSONObject(defaultParams.get("iterableType")).getJSONObject(returnType);
+        }
         int startLine = extractParams.getInt("startLine") - 1, length = extractParams.getInt("length");
 
 
@@ -71,13 +81,24 @@ public class KadanesAlgorithmSnippet {
 
     }
 
-    public static String kadanesSnippet(boolean inlineSnippet, String[][] vars) throws IOException {
-        Map<String, String> replaceVarNames = null;
-        if (vars != null && vars.length > 0) replaceVarNames = Arrays.stream(vars).collect(Collectors.toMap(p -> p[0], p -> p[1]));
-        return kadanesSnippet(inlineSnippet, replaceVarNames);
+    public static String kadanesSnippet(boolean inlineSnippet, Map<String, String> vars) throws IOException {
+        // vars should contain the variable names for `localMax` and `globalMax` with those as keys
+        // null or empty string for default variable names
+        return kadanesSnippet(inlineSnippet, null, vars);
     }
 
-    public static String kadanesSnippet(boolean inlineSnippet, String[] replacementVarNames) throws IOException {
+    public static String kadanesSnippet(boolean inlineSnippet, String iterableType, String[][] vars) throws IOException {
+        Map<String, String> replaceVarNames = null;
+        if (vars != null && vars.length > 0)
+            replaceVarNames = Arrays.stream(vars).collect(Collectors.toMap(p -> p[0], p -> p[1]));
+        return kadanesSnippet(inlineSnippet, iterableType, replaceVarNames);
+    }
+
+    public static String kadanesSnippet(boolean inlineSnippet, String[][] vars) throws IOException {
+        return kadanesSnippet(inlineSnippet, null, vars);
+    }
+
+    public static String kadanesSnippet(boolean inlineSnippet, String iterableType, String[] replacementVarNames) throws IOException {
         // replacementVarNames should contain the variable names for `globalMax` and `localMax`, in that order (alphabetically ascending)
         // null or empty string for default variable names
         Map<String, String> replaceVarNames = null;
@@ -93,11 +114,21 @@ public class KadanesAlgorithmSnippet {
             replaceVarNames = IntStream.range(0, defaultVariableNames.size()).boxed().collect(Collectors.toMap(defaultVariableNames::get, i -> finalReplacementVarNames.get(i) != null && !finalReplacementVarNames.get(i).equals("") ? finalReplacementVarNames.get(i) : defaultVariableNames.get(i)));
         }
 
-        return kadanesSnippet(inlineSnippet, replaceVarNames);
+        return kadanesSnippet(inlineSnippet, iterableType, replaceVarNames);
+    }
+
+    public static String kadanesSnippet(boolean inlineSnippet, String[] replacementVarNames) throws IOException {
+        // replacementVarNames should contain the variable names for `globalMax` and `localMax`, in that order (alphabetically ascending)
+        // null or empty string for default variable names
+        return kadanesSnippet(inlineSnippet, null, replacementVarNames);
     }
 
     public static String kadanesSnippet(boolean inlineSnippet) throws IOException {
-        return kadanesSnippet(inlineSnippet, (Map<String, String>) null);
+        return kadanesSnippet(inlineSnippet, null, (Map<String, String>) null);
+    }
+
+    public static String kadanesSnippet(String iterableType) throws IOException {
+        return kadanesSnippet(true, iterableType, (Map<String, String>) null);
     }
 
     public static String kadanesSnippet() throws IOException {
