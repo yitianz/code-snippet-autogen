@@ -203,13 +203,5 @@ public class KadanesAlgorithmSnippet {
     }
 
     public static void main(String[] args) {
-        try {
-            Map<String, String> replaceVars = Arrays.stream(new String[][]{{"localMax", "loki"}, {"globalMax", "thor"}}).collect(Collectors.toMap(k -> k[0], v -> v[1]));
-            System.out.println(kadanesSnippet(false));
-            System.out.println(kadanesSnippet(false, replaceVars));
-            System.out.println(kadanesSnippet(false, new String[]{"thor", "loki"}));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
