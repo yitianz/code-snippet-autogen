@@ -2,8 +2,8 @@
   "KadanesAlgorithm": {
     "filename": "KadanesAlgorithm.java",
     "variables": {
-      "localMax": "loc",
-      "globalMax": "glob"
+      "globalMax": "_$glob_",
+      "localMax": "_$loc_"
     },
     "iterableType": {
       "List<Integer>": {
@@ -13,6 +13,16 @@
         },
         "body": {
           "startLine": 8,
+          "length": 6
+        }
+      },
+      "int[]": {
+        "method": {
+          "startLine": 16,
+          "length": 8
+        },
+        "body": {
+          "startLine": 17,
           "length": 6
         }
       }
