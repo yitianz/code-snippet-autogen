@@ -5,6 +5,7 @@ In order to improve developer speed and productivity, we are creating an IDE ext
 For example, a developer who wants to use binary search as a subroutine for her task can simply use the following command snip.getCodeSnippet("binary search") to generate a code template for generic binary search in her programming language of choice.
 
 ## Features
+Todo
 
 ## Important Resources
 https://github.com/deepklarity/jupyter-text2code
