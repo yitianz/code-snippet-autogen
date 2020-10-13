@@ -18,7 +18,8 @@ Discord voice channel
 * Yitian
 * Kripa
 * Vinay
-* Raju
+* Vadhiraju
+* Sandipan
 
 ## Programming Languages Supported
 * Python
